@@ -11,6 +11,8 @@ vim.opt.autowrite = true
 vim.opt.cursorline = true
 vim.opt.autoread = true
 
+vim.cmd [[ packadd cfilter ]]
+
 vim.cmd [[ autocmd BufRead,BufNewFile *.snow set filetype=snow ]]
 vim.cmd [[ autocmd BufRead,BufNewFile *.snack set filetype=snack ]]
 vim.cmd [[ autocmd BufRead,BufNewFile *.a set filetype=a ]]

@@ -1,16 +1,40 @@
--- vim.keymap.set('n', ';;', ':!cargo run --release<CR>')
--- vim.keymap.set('n', ';c', ':!cargo check --release --workspace<CR>')
--- function QfMakeConv()
---    echo "Rust Make"
--- endfunction
+vim.o.makeprg = 'cargo'
 
--- au QuickfixCmdPost make call QfMakeConv()
+vim.cmd [[
+setlocal errorformat=
+                        \%f:%l:%c:\ %t%*[^:]:\ %m,
+                        \%f:%l:%c:\ %*\\d:%*\\d\ %t%*[^:]:\ %m,
+                        \%-G%f:%l\ %s,
+                        \%-G%*[\ ]^,
+                        \%-G%*[\ ]^%*[~],
+                        \%-G%*[\ ]...
 
--- Creating an autocommand in 0.7
--- vim.api.nvim_create_autocmd("QuickfixCmdPost", {
---     pattern = "*.rs",
---     callback = function(args)
---         print("Entered buffer " .. args.buf .. "!")
---     end,
---     desc = "run cargo run",
--- })
+" New errorformat (after nightly 2016/08/10)
+setlocal errorformat+=
+                        \%-G,
+                        \%-Gerror:\ aborting\ %.%#,
+                        \%-Gerror:\ Could\ not\ compile\ %.%#,
+                        \%Eerror:\ %m,
+                        \%Eerror[E%n]:\ %m,
+                        \%Wwarning:\ %m,
+                        \%Inote:\ %m,
+                        \%C\ %#-->\ %f:%l:%c
+
+setlocal errorformat+=
+                        \%-G%\\s%#Downloading%.%#,
+                        \%-G%\\s%#Compiling%.%#,
+                        \%-G%\\s%#Finished%.%#,
+                        \%-G%\\s%#error:\ Could\ not\ compile\ %.%#,
+                        \%-G%\\s%#To\ learn\ more\\,%.%#
+
+]]
+vim.keymap.set('n', ';;', ':make run<CR>')
+vim.keymap.set('n', ';c', ':make check --workspace<CR>')
+vim.keymap.set('n', ';mc', ':make clippy --workspace<CR>')
+
+-- function OpenQuickfixList()
+--   vim.api.nvim_cmd({ cmd = 'make', args = { 'check' } }, {})
+--   vim.api.nvim_cmd({ cmd = 'Telescope', args = { 'quickfix' }, {})
+-- end
+--
+-- vim.api.nvim_create_user_command('MyRustRun', OpenQuickfixList, {})

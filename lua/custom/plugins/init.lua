@@ -4,6 +4,7 @@
 -- See the kickstart.nvim README for more information
 return {
   { 'nvim-neotest/nvim-nio' },
+  { 'mattn/webapi-vim' },
   -- {
   --   'mxsdev/nvim-dap-vscode-js',
   --   dependencies = { 'mfussenegger/nvim-dap' },
