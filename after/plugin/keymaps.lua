@@ -19,11 +19,11 @@ vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 
 vim.keymap.set('n', '<leader>d', ':lua vim.diagnostic.open_float()<CR>')
 
--- vim.api.nvim_create_user_command("InsertDate", function()
--- 	local currentDateTime = vim.fn.system("date")
--- 	local trimmedDateTime = currentDateTime:gsub("^%s*(.-)%s*$", "%1")
--- 	vim.api.nvim_put({ trimmedDateTime }, "c", true, true)
--- end, {})
---
--- vim.keymap.set("i", "<F5>", "<C-o>:InsertDate<CR>")
--- vim.keymap.set("n", "<F5>", ":InsertDate<CR>")
+vim.api.nvim_create_user_command('InsertDate', function()
+  local currentDateTime = vim.fn.system 'date'
+  local trimmedDateTime = currentDateTime:gsub('^%s*(.-)%s*$', '%1')
+  vim.api.nvim_put({ trimmedDateTime }, 'c', true, true)
+end, {})
+
+vim.keymap.set('i', '<F5>', '<C-o>:InsertDate<CR>')
+vim.keymap.set('n', '<F5>', ':InsertDate<CR>')
