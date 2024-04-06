@@ -5,6 +5,11 @@
 return {
   { 'nvim-neotest/nvim-nio' },
   { 'mattn/webapi-vim' },
+  -- json and yaml formating and more tools
+  {
+    'gennaro-tedesco/nvim-jqx',
+    ft = { 'json', 'yaml' },
+  },
   -- {
   --   'mxsdev/nvim-dap-vscode-js',
   --   dependencies = { 'mfussenegger/nvim-dap' },
