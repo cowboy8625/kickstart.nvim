@@ -1,19 +1,19 @@
 return {
-  "nvim-lualine/lualine.nvim",
+  'nvim-lualine/lualine.nvim',
   config = function()
-    require("lualine").setup({
+    require('lualine').setup {
       options = {
         icons_enabled = true,
-        theme = "gruvbox",
+        theme = 'gruvbox',
       },
       sections = {
         lualine_a = {
           {
-            "filename",
+            'filename',
             path = 1,
           },
         },
       },
-    })
+    }
   end,
 }

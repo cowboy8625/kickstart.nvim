@@ -27,3 +27,7 @@ end, {})
 
 vim.keymap.set('i', '<F5>', '<C-o>:InsertDate<CR>')
 vim.keymap.set('n', '<F5>', ':InsertDate<CR>')
+
+vim.keymap.set('n', '<leader>rl', ':w<CR>:so %<CR>', { desc = 'Save and Reload [S]ource' })
+
+vim.keymap.set('n', '<leader>fc', ':e $MYVIMRC<CR>', { desc = 'Edit [F]ile [C]onfig' })

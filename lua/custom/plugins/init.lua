@@ -3,6 +3,37 @@
 --
 -- See the kickstart.nvim README for more information
 return {
+  {
+    dir = '~/Documents/neovim_plugins/irc.nvim',
+    config = function()
+      local cowboy8625 = 'cowboy8625'
+      require('irc_nvim').setup {
+        opt = {
+          server = 'irc.libera.chat',
+          port = 6667,
+          nickname = cowboy8625,
+          username = cowboy8625,
+          realname = cowboy8625,
+          password = os.getenv 'IRC_PASSWORD',
+          hide = {
+            'JOIN',
+            'PART',
+            'QUIT',
+          },
+          channels = {
+            'libera\\.chat',
+            '#dailycodex',
+            '#llvm',
+            '#lisp',
+            '#neovim',
+            '#systemcrafters',
+            '#emacs',
+            '##rust',
+          },
+        },
+      }
+    end,
+  },
   { 'nvim-neotest/nvim-nio' },
   { 'mattn/webapi-vim' },
   -- json and yaml formating and more tools

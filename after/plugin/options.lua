@@ -1,4 +1,4 @@
---Line numbers
+-- Line numbers
 vim.wo.number = true
 vim.wo.relativenumber = true
 -- enable lua filetype
@@ -9,6 +9,7 @@ vim.opt.showcmd = true
 vim.opt.laststatus = 2
 vim.opt.autowrite = true
 vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
 vim.opt.autoread = true
 
 vim.cmd [[ packadd cfilter ]]
