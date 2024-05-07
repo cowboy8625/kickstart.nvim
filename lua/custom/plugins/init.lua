@@ -3,6 +3,7 @@
 --
 -- See the kickstart.nvim README for more information
 return {
+<<<<<<< Updated upstream
   {
     dir = '~/Documents/neovim_plugins/irc.nvim',
     config = function()
@@ -34,6 +35,16 @@ return {
       }
     end,
   },
+=======
+  -- {
+  --   dependencies = {
+  --     'nvim-neotest/nvim-nio',
+  --     'rcarriga/nvim-notify',
+  --   },
+  --   dir = '~/Documents/NeovimPlugins/twitch_watch.nvim',
+  -- },
+  { 'rcarriga/nvim-notify' },
+>>>>>>> Stashed changes
   { 'nvim-neotest/nvim-nio' },
   { 'mattn/webapi-vim' },
   -- json and yaml formating and more tools

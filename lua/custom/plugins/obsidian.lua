@@ -10,7 +10,7 @@ return {
     'BufReadPre '
       .. vim.fn.expand '~'
       .. '/vaults/*/**.md',
-    'BufNewFile ' .. vim.fn.expand '~' .. '/vaults/*/**.md',
+    'BufNewFile ' .. vim.fn.expand '~' .. '/vaults/**/**.md',
   },
   dependencies = {
     -- Required.
@@ -30,6 +30,11 @@ return {
     completion = {
       nvim_cmp = true,
       min_chars = 2,
+    },
+    daily_notes = {
+      -- Optional, if you keep daily notes in a separate directory.
+      folder = 'daily',
+      template = 'Template/daily-template.md',
     },
   },
 }
