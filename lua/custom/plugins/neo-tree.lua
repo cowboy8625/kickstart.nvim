@@ -17,5 +17,5 @@ return {
     }
   end,
 
-  vim.keymap.set('n', '<c-n>', ':Neotree  reveal_force_cwd toggle<cr>'),
+  vim.keymap.set('n', '<c-n>', ':Neotree  reveal_force_cwd toggle<cr>', { desc = 'Toggle NeoTree', silent = true }),
 }

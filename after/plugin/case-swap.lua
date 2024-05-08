@@ -39,5 +39,5 @@ vim.api.nvim_create_user_command('SnakeToCamelCase', function()
   replace_word_under_cursor(new_word)
 end, {})
 
-vim.keymap.set('n', 'swc', ':SnakeToCamelCase<CR>', { desc = 'Swap [W]ord to [C]amel case' })
-vim.keymap.set('n', 'sws', ':CamelToSnakeCase<CR>', { desc = 'Swap [W]ord to [S]nake case' })
+vim.keymap.set('n', 'swc', ':SnakeToCamelCase<CR>', { desc = 'Swap [W]ord to [C]amel case', silent = true })
+vim.keymap.set('n', 'sws', ':CamelToSnakeCase<CR>', { desc = 'Swap [W]ord to [S]nake case', silent = true })
