@@ -63,19 +63,19 @@ local function openQuickfixListInTelescope()
 end
 
 local function cargoRun()
-  vim.cmd [[ make run ]]
+  vim.cmd [[ silent! make run ]]
   filtersQuickfixList()
   openQuickfixListInTelescope()
 end
 
 local function cargoCheck()
-  vim.cmd [[ make check --workspace ]]
+  vim.cmd [[ silent! make check --workspace ]]
   filtersQuickfixList()
   openQuickfixListInTelescope()
 end
 
 local function cargoClippy()
-  vim.cmd [[ make clippy --workspace ]]
+  vim.cmd [[ silent! make clippy --workspace ]]
   filtersQuickfixList()
   openQuickfixListInTelescope()
 end

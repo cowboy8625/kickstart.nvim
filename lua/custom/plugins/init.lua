@@ -3,6 +3,51 @@
 --
 -- See the kickstart.nvim README for more information
 return {
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+  {
+    dir = '~/Documents/neovim_plugins/irc.nvim',
+    config = function()
+      local cowboy8625 = 'cowboy8625'
+      require('irc_nvim').setup {
+        opt = {
+          server = 'irc.libera.chat',
+          port = 6667,
+          nickname = cowboy8625,
+          username = cowboy8625,
+          realname = cowboy8625,
+          password = os.getenv 'IRC_PASSWORD',
+          hide = {
+            'JOIN',
+            'PART',
+            'QUIT',
+          },
+          channels = {
+            'libera\\.chat',
+            '#dailycodex',
+            '#llvm',
+            '#lisp',
+            '#neovim',
+            '#systemcrafters',
+            '#emacs',
+            '##rust',
+          },
+        },
+      }
+    end,
+  },
+=======
+  -- {
+  --   dependencies = {
+  --     'nvim-neotest/nvim-nio',
+  --     'rcarriga/nvim-notify',
+  --   },
+  --   dir = '~/Documents/NeovimPlugins/twitch_watch.nvim',
+  -- },
+  { 'rcarriga/nvim-notify' },
+>>>>>>> Stashed changes
+>>>>>>> febc9fdb92fea0e0c94a8ea71f1718cb6722bfe1
   { 'nvim-neotest/nvim-nio' },
   { 'mattn/webapi-vim' },
   -- json and yaml formating and more tools

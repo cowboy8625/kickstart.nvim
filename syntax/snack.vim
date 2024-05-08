@@ -9,13 +9,12 @@ endif
 
 syn keyword snackKeyword if elif else do true false let copy swap drop over rot
 syn keyword snackKeyword while end or not and memory const word in use return
-syn keyword snackKeyword struct enum
 
 syn keyword snackFunction max
-syn keyword snackFunction syscall1 syscall2 syscall3 syscall4 syscall5 syscall6
-syn keyword snackType     null bool char str u64
+syn keyword snackFunction syscall1 syscall2 syscall3
+syn keyword snackType null bool char str u64 u32 u16 u8 i64 i32 i16 i8 f64 f32 void
 
-syn keyword snackTodo contained TODO FIXME XXX NOTE
+syn keyword snackTodo contained TODO FIXME XXX NOTE HACK
 syn match snackComment "//.*$" contains=snackTodo
 
 
