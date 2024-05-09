@@ -1,5 +1,6 @@
 return {
-  'sindrets/winshift.nvim',
+  'jam1015/winshift.nvim',
+  branch = 'fix_colors',
   config = function()
     require('winshift').setup {
       highlight_moving_win = true, -- Highlight the window being moved

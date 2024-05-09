@@ -1,11 +1,12 @@
 return {
   'NeogitOrg/neogit',
   dependencies = {
-    'nvim-lua/plenary.nvim', -- required
-    'nvim-telescope/telescope.nvim', -- optional
-    'sindrets/diffview.nvim', -- optional
-    'ibhagwan/fzf-lua', -- optional
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope.nvim',
+    'sindrets/diffview.nvim',
   },
-  config = true,
+  config = {
+    disable_hint = true,
+  },
   vim.keymap.set('n', '<leader>ng', ':Neogit<cr>', { desc = 'Open Neogit' }),
 }

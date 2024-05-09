@@ -3,7 +3,6 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 -- enable lua filetype
 vim.g.do_filetype_lua = 1
-
 vim.opt.backspace = '2'
 vim.opt.showcmd = true
 vim.opt.laststatus = 2
