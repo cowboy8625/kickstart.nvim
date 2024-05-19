@@ -3,8 +3,14 @@
 --
 -- See the kickstart.nvim README for more information
 return {
+  { 'cowboy8625/epoc.nvim' },
+  { 'cowboy8625/case-swap.nvim' },
   { 'nvim-neotest/nvim-nio' },
   { 'mattn/webapi-vim' },
+  {
+    'Joakker/lua-json5',
+    build = './install.sh',
+  },
   -- json and yaml formating and more tools
   {
     'gennaro-tedesco/nvim-jqx',

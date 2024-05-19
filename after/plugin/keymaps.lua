@@ -13,11 +13,11 @@ vim.keymap.set('n', '<leader>ne', vim.diagnostic.goto_next, { desc = 'Go to next
 vim.keymap.set('n', '<leader>pe', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 
 -- Spawn terminal at bottom of screen
-vim.keymap.set('n', '<leader>;', ':belowright split | term<CR>')
-
-vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
-
-vim.keymap.set('n', '<leader>d', ':lua vim.diagnostic.open_float()<CR>')
+-- vim.keymap.set('n', '<leader>;', ':belowright split | term<CR>')
+--
+-- vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
+--
+-- vim.keymap.set('n', '<leader>d', ':lua vim.diagnostic.open_float()<CR>')
 
 vim.api.nvim_create_user_command('InsertDate', function()
   local currentDateTime = vim.fn.system 'date'
@@ -25,8 +25,8 @@ vim.api.nvim_create_user_command('InsertDate', function()
   vim.api.nvim_put({ trimmedDateTime }, 'c', true, true)
 end, {})
 
-vim.keymap.set('i', '<F5>', '<C-o>:InsertDate<CR>')
-vim.keymap.set('n', '<F5>', ':InsertDate<CR>')
+-- vim.keymap.set('i', '<F5>', '<C-o>:InsertDate<CR>')
+-- vim.keymap.set('n', '<F5>', ':InsertDate<CR>')
 
 vim.keymap.set('n', '<leader>rl', ':w<CR>:so %<CR>', { desc = 'Save and Reload [S]ource' })
 
