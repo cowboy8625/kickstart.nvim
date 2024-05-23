@@ -327,10 +327,11 @@ require('lazy').setup({
           builtin {
             layout_strategy = 'vertical',
             layout_config = {
-              prompt_position = 'top',
+              preview_cutoff = 1,
+              prompt_position = 'bottom',
               horizontal = { width = 0.9, height = 0.9 },
               vertical = { height = 0.9, width = 0.9 },
-              preview_height = 0.7,
+              preview_height = 0.6,
             },
           }
         end
