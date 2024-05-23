@@ -24,6 +24,11 @@ vim.api.nvim_create_user_command('InsertDate', function()
   local trimmedDateTime = currentDateTime:gsub('^%s*(.-)%s*$', '%1')
   vim.api.nvim_put({ trimmedDateTime }, 'c', true, true)
 end, {})
+vim.api.nvim_create_user_command('DeleteNoNameBuffers', function()
+  vim.cmd [[
+    bufdo if getbufvar(bufnr('%'), '&buftype') == '' && getbufvar(bufnr('%'), '&modified') == 0 && bufname('%') == '' | bdelete | endif
+  ]]
+end, {})
 
 -- vim.keymap.set('i', '<F5>', '<C-o>:InsertDate<CR>')
 -- vim.keymap.set('n', '<F5>', ':InsertDate<CR>')

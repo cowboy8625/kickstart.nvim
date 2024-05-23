@@ -19,3 +19,10 @@ vim.cmd [[ autocmd BufRead,BufNewFile *.a set filetype=a ]]
 vim.cmd [[ autocmd BufRead,BufNewFile *.tera set filetype=html ]]
 vim.cmd [[ autocmd BufRead,BufNewFile *.zon set filetype=zig ]]
 vim.cmd [[ autocmd BufRead,BufNewFile *.nl set filetype=lisp ]]
+
+local uname = vim.loop.os_uname()
+if uname.sysname == 'Darwin' then
+  -- Disable newlines at the end of files
+  vim.opt.binary = true
+  vim.opt.eol = false
+end
