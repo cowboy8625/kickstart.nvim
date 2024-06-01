@@ -36,5 +36,11 @@ return {
       folder = 'daily',
       template = 'Template/daily-template.md',
     },
+    templates = {
+      folder = 'Template',
+      date_format = '%Y-%m-%d',
+      time_format = '%H:%M',
+      substitutions = {},
+    },
   },
 }

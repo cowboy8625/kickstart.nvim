@@ -379,15 +379,15 @@ require('lazy').setup({
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
+      vim.keymap.set('n', '<leader>sh', tsdisplay(builtin.help_tags), { desc = '[S]earch [H]elp' })
+      vim.keymap.set('n', '<leader>sk', tsdisplay(builtin.keymaps), { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', tsdisplay(builtin.find_files), { desc = '[S]earch [F]iles' })
-      vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+      vim.keymap.set('n', '<leader>ss', tsdisplay(builtin.builtin), { desc = '[S]earch [S]elect Telescope' })
+      vim.keymap.set('n', '<leader>sw', tsdisplay(builtin.grep_string), { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', tsdisplay(builtin.live_grep), { desc = '[S]earch by [G]rep' })
-      vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-      vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+      vim.keymap.set('n', '<leader>sd', tsdisplay(builtin.diagnostics), { desc = '[S]earch [D]iagnostics' })
+      vim.keymap.set('n', '<leader>sr', tsdisplay(builtin.resume), { desc = '[S]earch [R]esume' })
+      vim.keymap.set('n', '<leader>s.', tsdisplay(builtin.oldfiles), { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', tsdisplay(builtin.buffers), { desc = '[ ] Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
@@ -628,8 +628,12 @@ require('lazy').setup({
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        javascript = { { 'eslint', 'prettierd', 'prettier' } },
-        typescript = { { 'eslint', 'prettierd', 'prettier' } },
+        -- javascript = { { 'eslint', 'prettier' } },
+        javascript = {
+          { 'prettier', args = { '--trailing-comma', 'all' } }, -- Ensure correct args format
+          'eslint',
+        },
+        typescript = { { 'eslint', 'prettier' } },
       },
     },
   },
