@@ -11,6 +11,10 @@ vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 vim.opt.autoread = true
 
+-- This keeps the swapping lines when pressing <esc> j/k
+-- vim.opt.timeoutlen = 1000
+-- vim.opt.ttimeoutlen = 0
+
 vim.cmd [[ packadd cfilter ]]
 
 vim.cmd [[ autocmd BufRead,BufNewFile *.snow set filetype=snow ]]

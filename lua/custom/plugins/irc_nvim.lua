@@ -10,7 +10,7 @@ return {
         username = cowboy8625,
         realname = cowboy8625,
         password = os.getenv 'IRC_PASSWORD',
-        hide = {
+        hidden_commands = {
           'JOIN',
           'PART',
           'QUIT',
