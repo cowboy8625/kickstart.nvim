@@ -2,7 +2,7 @@ return {
   'folke/zen-mode.nvim',
   opts = {
     window = {
-      backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+      backdrop = 1.0, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
       -- height and width can be:
       -- * an absolute number of cells when > 1
       -- * a percentage of the width / height of the editor when <= 1
@@ -40,8 +40,8 @@ return {
       -- - allow_remote_control socket-only
       -- - listen_on unix:/tmp/kitty
       kitty = {
-        enabled = false,
-        font = '+4', -- font size increment
+        enabled = true,
+        font = '+14', -- font size increment
       },
       -- this will change the font size on alacritty when in zen mode
       -- requires  Alacritty Version 0.10.0 or higher
@@ -59,8 +59,16 @@ return {
       },
     },
     -- callback where you can add custom code when the Zen window opens
-    on_open = function(win) end,
+    on_open = function(win)
+      vim.wo.number = false
+      vim.wo.relativenumber = false
+      vim.opt.signcolumn = 'no'
+    end,
     -- callback where you can add custom code when the Zen window closes
-    on_close = function() end,
+    on_close = function()
+      vim.wo.number = true
+      vim.wo.relativenumber = true
+      vim.opt.signcolumn = 'yes'
+    end,
   },
 }

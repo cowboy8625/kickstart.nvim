@@ -146,6 +146,33 @@ local function js_debugger_setup()
   end
 end
 
+local function rust_debugger_options()
+  local dap = require 'dap'
+  dap.adapters.lldb = {
+    type = 'executable',
+    command = 'lldb',
+    name = 'lldb',
+  }
+
+  dap.configurations.rust = {
+    {
+      name = 'Debug executable',
+      type = 'lldb',
+      request = 'launch',
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      stopOnEntry = false,
+      args = function()
+        local input = vim.fn.input 'Args: '
+        return vim.fn.split(input, ' ') -- Split input into a table of arguments
+      end,
+      runInTerminal = false,
+    },
+  }
+end
+
 return {
   -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
@@ -274,5 +301,6 @@ return {
     -- Install golang specific config
     require('dap-go').setup()
     js_debugger_setup()
+    -- rust_debugger_options()
   end,
 }
