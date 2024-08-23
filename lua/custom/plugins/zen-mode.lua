@@ -71,4 +71,8 @@ return {
       vim.opt.signcolumn = 'yes'
     end,
   },
+  config = function(_, opts)
+    require('zen-mode').setup(opts)
+    vim.keymap.set('n', '<leader>z', require('zen-mode').toggle, { desc = 'Toggle Zen Mode' })
+  end,
 }

@@ -36,3 +36,8 @@ end, {})
 vim.keymap.set('n', '<leader>rl', ':w<CR>:so %<CR>', { desc = 'Save and Reload [S]ource' })
 
 vim.keymap.set('n', '<leader>fc', ':e $MYVIMRC<CR>', { desc = 'Edit [F]ile [C]onfig' })
+--
+-- Copy File Path
+vim.api.nvim_set_keymap('n', '<leader>Cr', ':let @+ = expand("%") | echo "Copied: " . expand("%")<CR>', { desc = 'Copy [R]elative [P]ath' })
+vim.api.nvim_set_keymap('n', '<leader>Ca', ':let @+ = expand("%:p") | echo "Copied: " . expand("%:p")<CR>', { desc = 'Copy [Absolute [P]ath' })
+vim.api.nvim_set_keymap('n', '<leader>Cf', ':let @+ = expand("%:t") | echo "Copied: " . expand("%:t")<CR>', { desc = 'Copy [F]ile [P]ath' })
