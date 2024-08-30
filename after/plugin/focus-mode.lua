@@ -3,11 +3,12 @@ local function focus_mode_toggle()
   vim.wo.relativenumber = not vim.wo.relativenumber
   vim.opt.signcolumn = (vim.wo.number and 'yes') or 'no'
   -- toggle statusline
-  if vim.o.laststatus == 3 then
+  if vim.o.laststatus > 0 then
     vim.o.laststatus = 0
   else
     vim.o.laststatus = 3
   end
+  vim.o.cmdheight = vim.o.cmdheight == 1 and 0 or 1
   -- toggle Codeium
   vim.cmd [[ CodeiumToggle ]]
 
