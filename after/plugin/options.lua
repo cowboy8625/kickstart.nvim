@@ -22,7 +22,7 @@ vim.cmd [[ autocmd BufRead,BufNewFile *.snack set filetype=snack ]]
 vim.cmd [[ autocmd BufRead,BufNewFile *.a set filetype=a ]]
 vim.cmd [[ autocmd BufRead,BufNewFile *.tera set filetype=html ]]
 vim.cmd [[ autocmd BufRead,BufNewFile *.zon set filetype=zig ]]
-vim.cmd [[ autocmd BufRead,BufNewFile *.nl set filetype=lisp ]]
+-- vim.cmd [[ autocmd BufRead,BufNewFile *.nl set filetype=neolisp ]]
 
 local uname = vim.loop.os_uname()
 if uname.sysname == 'Darwin' then
