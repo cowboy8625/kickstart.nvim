@@ -565,7 +565,7 @@ require('lazy').setup({
         gopls = {},
         pyright = {},
         rust_analyzer = {},
-        tsserver = {},
+        ts_ls = {},
         elmls = {},
 
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -645,6 +645,9 @@ require('lazy').setup({
           'eslint',
         },
         typescript = { { 'eslint', 'prettier' } },
+        handlebars = {
+          { 'prettier', args = { '--parser', 'glimmer' } },
+        },
       },
     },
   },
