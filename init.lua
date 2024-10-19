@@ -565,6 +565,8 @@ require('lazy').setup({
         gopls = {},
         pyright = {},
         rust_analyzer = {},
+        cpplint = {},
+        cpptools = {},
         ts_ls = {},
         elmls = {},
 

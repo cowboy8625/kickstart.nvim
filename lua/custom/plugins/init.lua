@@ -79,4 +79,17 @@ return {
       end)
     end,
   },
+  {
+    'smoka7/hop.nvim',
+    version = '*',
+    opts = {
+      keys = 'etovxqpdygfblzhckisuran',
+    },
+    config = function(_, opts)
+      require('hop').setup(opts)
+
+      vim.keymap.set('n', '<leader>hw', ':HopWord<cr>', { desc = '[H]op [W]ord', remap = true })
+      vim.keymap.set('n', '<leader>ha', ':HopAnywhere<cr>', { desc = '[H]op [A]ny [W]here', remap = true })
+    end,
+  },
 }

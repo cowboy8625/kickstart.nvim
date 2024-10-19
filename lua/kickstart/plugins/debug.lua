@@ -6,66 +6,6 @@
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
--- local function read_vscode_launch_json()
---   if vim.fn.isdirectory '.vscode' == 0 then
---     return
---   end
---
---   local json_file = '.vscode/launch.json'
---   local json5 = require('json5').parse
---
---   local file = io.open(json_file, 'r')
---   if not file then
---     print('Failed to open file:', json_file)
---     return nil
---   end
---
---   local jsonc_data = file:read '*a'
---   file:close()
---
---   local obj = json5(jsonc_data)
---   if not obj then
---     print('Failed to parse JSON:', jsonc_data)
---     return nil
---   end
---
---   return obj
--- end
-
--- debug.lua
---
--- Shows how to use the DAP plugin to debug your code.
---
--- Primarily focused on configuring the debugger for Go, but can
--- be extended to other languages as well. That's why it's called
--- kickstart.nvim and not kitchen-sink.nvim ;)
-
-local function read_vscode_launch_json()
-  if vim.fn.isdirectory '.vscode' == 0 then
-    return
-  end
-
-  local json_file = '.vscode/launch.json'
-  local json5 = require('json5').parse
-
-  local file = io.open(json_file, 'r')
-  if not file then
-    print('Failed to open file:', json_file)
-    return nil
-  end
-
-  local jsonc_data = file:read '*a'
-  file:close()
-
-  local obj = json5(jsonc_data)
-  if not obj then
-    print('Failed to parse JSON:', jsonc_data)
-    return nil
-  end
-
-  return obj
-end
-
 local function js_debugger_setup()
   local js_based_languages = {
     'typescript',
@@ -80,17 +20,11 @@ local function js_debugger_setup()
   local dap_vscode = require 'dap.ext.vscode'
   dap_vscode.load_launchjs(nil, {
     ['pwa-node'] = js_based_languages,
-    ['node'] = js_based_languages,
+    ['node2'] = { 'javascript', 'typescript' },
     ['chrome'] = js_based_languages,
     ['pwa-chrome'] = js_based_languages,
   })
-  --
-  -- local config_vscode = read_vscode_launch_json()
-  -- if config_vscode ~= nil then
-  --   for _, language in ipairs(js_based_languages) do
-  --     require('dap').configurations[language] = config_vscode.configurations
-  --   end
-  -- end
+
   for _, language in ipairs(js_based_languages) do
     dap.configurations[language] = {
       -- Debug single nodejs files
@@ -110,6 +44,29 @@ local function js_debugger_setup()
         processId = require('dap.utils').pick_process,
         cwd = vim.fn.getcwd(),
         sourceMaps = true,
+      },
+      {
+        name = 'Run crmSyncTester.ts with tsx',
+        name = 'Run crmSyncTester.ts with Node and tsx',
+        type = 'pwa-node', -- Assuming you're using the 'pwa-node' adapter
+        request = 'launch',
+        program = '${workspaceFolder}/api/tools/crmSyncTester.ts', -- The script to run
+        cwd = vim.fn.getcwd(), -- Current working directory (optional)
+
+        -- This matches the `--inspect-brk=9229` flag to start the debugger and break before execution
+        runtimeArgs = { '--inspect-brk=9229', '--import', 'tsx' },
+
+        -- Node.js runtime executable
+        runtimeExecutable = 'node', -- You can also specify the full path if needed, e.g., '/usr/local/bin/node'
+
+        -- Environment variables
+        env = {
+          NODE_ENV = 'LOCAL_PRODUCTION', -- Pass NODE_ENV as environment variable
+        },
+
+        sourceMaps = false, -- If you are not using source maps
+        protocol = 'inspector', -- The inspector protocol used for Node.js
+        console = 'integratedTerminal', -- Use Neovim's integrated terminal for the output
       },
       -- Debug web applications (client side)
       {
@@ -138,39 +95,30 @@ local function js_debugger_setup()
       },
       -- Divider for the launch.json derived configs
       {
+        name = 'json-admin2',
+        type = 'pwa-node', -- Replace "node2" with "pwa-node" for nvim-dap
+        request = 'launch',
+        cwd = vim.fn.getcwd() .. '/api', -- Equivalent to "${workspaceFolder}/api"
+        runtimeExecutable = 'npm',
+        runtimeArgs = { 'run', 'admin' },
+        env = {
+          IS_APP_ADMIN = 'true',
+          PORT = '8085',
+          NODE_ENV = 'LOCAL',
+          USE_LOCALSTACK = 'true',
+        },
+        autoAttachChildProcesses = true,
+        restart = true,
+        skipFiles = { '<node_internals>/**' },
+        console = 'integratedTerminal',
+      },
+      {
         name = '----- ↓ launch.json configs ↓ -----',
         type = '',
         request = 'launch',
       },
     }
   end
-end
-
-local function rust_debugger_options()
-  local dap = require 'dap'
-  dap.adapters.lldb = {
-    type = 'executable',
-    command = 'lldb',
-    name = 'lldb',
-  }
-
-  dap.configurations.rust = {
-    {
-      name = 'Debug executable',
-      type = 'lldb',
-      request = 'launch',
-      program = function()
-        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
-      end,
-      cwd = '${workspaceFolder}',
-      stopOnEntry = false,
-      args = function()
-        local input = vim.fn.input 'Args: '
-        return vim.fn.split(input, ' ') -- Split input into a table of arguments
-      end,
-      runInTerminal = false,
-    },
-  }
 end
 
 return {
@@ -216,6 +164,7 @@ return {
             'pwa-msedge',
             'pwa-extensionHost',
             'node-terminal',
+            'node2',
           },
 
           -- Path for file logging
@@ -233,12 +182,17 @@ return {
       'Joakker/lua-json5',
       build = './install.sh',
     },
+    -- {
+    --   'nvim-telescope/telescope-dap.nvim',
+    -- },
     ---
   },
   config = function()
     require('dap.ext.vscode').json_decode = require('json5').parse
     local dap = require 'dap'
     local dapui = require 'dapui'
+    -- local telescope = require 'telescope'
+    -- require('telescope').load_extension 'dap'
 
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
@@ -266,6 +220,10 @@ return {
     vim.keymap.set('n', '<leader>B', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = 'Debug: Set Breakpoint' })
+    vim.keymap.set('n', '<leader>dh', dapui.eval, { noremap = true, silent = true, desc = 'Debug: Evaluate' })
+    -- vim.keymap.set('n', '<leader>db', function()
+    --   telescope.extensions.dap.list_breakpoints()
+    -- end, { noremap = true, silent = true, desc = 'Debug: List Breakpoints' })
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
@@ -301,6 +259,5 @@ return {
     -- Install golang specific config
     require('dap-go').setup()
     js_debugger_setup()
-    -- rust_debugger_options()
   end,
 }
