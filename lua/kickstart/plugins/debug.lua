@@ -46,7 +46,7 @@ local function js_debugger_setup()
         sourceMaps = true,
       },
       {
-        name = 'Run crmSyncTester.ts with tsx',
+        -- name = 'Run crmSyncTester.ts with tsx',
         name = 'Run crmSyncTester.ts with Node and tsx',
         type = 'pwa-node', -- Assuming you're using the 'pwa-node' adapter
         request = 'launch',

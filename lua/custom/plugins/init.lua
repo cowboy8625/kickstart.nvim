@@ -3,6 +3,7 @@
 --
 -- See the kickstart.nvim README for more information
 return {
+  { 'glacambre/firenvim', build = ':call firenvim#install(0)' },
   -- { dir = '~/Documents/neovim_plugins/epoc.nvim' },
   { 'cowboy8625/epoc.nvim' },
   { 'cowboy8625/case-swap.nvim' },
