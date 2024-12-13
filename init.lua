@@ -650,6 +650,7 @@ require('lazy').setup({
         handlebars = {
           { 'prettier', args = { '--parser', 'glimmer' } },
         },
+        c = { 'astyle' },
       },
     },
   },

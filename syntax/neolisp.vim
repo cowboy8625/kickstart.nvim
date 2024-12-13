@@ -33,3 +33,7 @@ highlight link nlComment Comment
 " Add TODO or NOTE inside comments (optional)
 syntax match nlTodo /TODO:\|NOTE:/ containedin=nlComment
 highlight link nlTodo Todo
+
+" Highlight keywords (variables starting with :)
+syntax match nlKeyword /\v\:\w+/
+highlight link nlKeyword Keyword
