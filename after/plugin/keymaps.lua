@@ -41,3 +41,12 @@ vim.keymap.set('n', '<leader>fc', ':e $MYVIMRC<CR>', { desc = 'Edit [F]ile [C]on
 vim.api.nvim_set_keymap('n', '<leader>Cr', ':let @+ = expand("%") | echo "Copied: " . expand("%")<CR>', { desc = 'Copy [R]elative [P]ath' })
 vim.api.nvim_set_keymap('n', '<leader>Ca', ':let @+ = expand("%:p") | echo "Copied: " . expand("%:p")<CR>', { desc = 'Copy [Absolute [P]ath' })
 vim.api.nvim_set_keymap('n', '<leader>Cf', ':let @+ = expand("%:t") | echo "Copied: " . expand("%:t")<CR>', { desc = 'Copy [F]ile [P]ath' })
+
+-- Hex Dump
+vim.api.nvim_set_keymap('n', '<leader>xxd', ':%!xxd', { noremap = true, silent = true, desc = 'Hex Dump' })
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>xxdp',
+  [[:%!xxd -p -u -c 256 % | tr -d '\n' | sed 's/\(..\)/\1 /g'<CR>]],
+  { noremap = true, silent = true, desc = 'Hex Dump' }
+)

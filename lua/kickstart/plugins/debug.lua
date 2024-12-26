@@ -182,17 +182,16 @@ return {
       'Joakker/lua-json5',
       build = './install.sh',
     },
-    -- {
-    --   'nvim-telescope/telescope-dap.nvim',
-    -- },
-    ---
+    {
+      'nvim-telescope/telescope-dap.nvim',
+    },
   },
   config = function()
     require('dap.ext.vscode').json_decode = require('json5').parse
     local dap = require 'dap'
     local dapui = require 'dapui'
-    -- local telescope = require 'telescope'
-    -- require('telescope').load_extension 'dap'
+    local telescope = require 'telescope'
+    require('telescope').load_extension 'dap'
 
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
@@ -221,9 +220,9 @@ return {
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = 'Debug: Set Breakpoint' })
     vim.keymap.set('n', '<leader>dh', dapui.eval, { noremap = true, silent = true, desc = 'Debug: Evaluate' })
-    -- vim.keymap.set('n', '<leader>db', function()
-    --   telescope.extensions.dap.list_breakpoints()
-    -- end, { noremap = true, silent = true, desc = 'Debug: List Breakpoints' })
+    vim.keymap.set('n', '<leader>db', function()
+      telescope.extensions.dap.list_breakpoints()
+    end, { noremap = true, silent = true, desc = 'Debug: List Breakpoints' })
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
