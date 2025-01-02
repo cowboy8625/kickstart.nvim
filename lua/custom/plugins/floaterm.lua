@@ -11,6 +11,7 @@ return {
     vim.g.floaterm_borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' }
 
     local function getKeys()
+      -- local uname = vim.loop.os_uname().sysname
       if vim.env.KITTY_WINDOW_ID ~= nil then
         return '<c-_>'
       end
