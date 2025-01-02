@@ -1,25 +1,24 @@
 " Vim syntax file
-" Language:	c flat
-" Maintainer:	cowboy8625
-" Last Change:	2022 Dec 12
+" Language:     c flat
+" Maintainer:   cowboy8625
+" Last Change:  2025 Jan 1
 if exists("b:current_syntax")
   finish
 endif
 
 syn keyword aKeyword if else
-syn keyword aKeyword true false
+syn keyword aKeyword true false use
 syn keyword aKeyword or and let in const pub
 syn keyword aKeyword fn struct enum union type
 syn keyword aKeyword return
 
-" syn keyword aFunction println print
-
 hi link aKeyword Keyword
 
+syn match aType "\(type\_s\+\)\@<=\<[A-z0-9]\+\>"
 syn match aFn "\(fn\_s\+\)\@<=\<[A-z0-9]\+\>"
 
 syn keyword aTodo contained TODO FIXME XXX NOTE
-syn match aComment "--.*$" contains=aTodo
+syn match aComment "//.*$" contains=aTodo
 syn region aCommentBlock start="{-\%(!\|\*[*/]\@!\)\@!" end="-}" contains=aTODO
 
 
@@ -62,6 +61,7 @@ hi def link aComment           Comment
 hi def link aCommentBlock      Comment
 hi def link aBlockCmd          Statement
 hi def link aHip               Type
+hi def link aType               Type
 hi def link aString            Constant
 hi def link aDesc              PreProc
 hi def link aNumber            Constant
