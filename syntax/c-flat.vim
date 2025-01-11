@@ -6,7 +6,7 @@ if exists("b:current_syntax")
   finish
 endif
 
-syn keyword aKeyword if else
+syn keyword aKeyword if else defmacro
 syn keyword aKeyword true false use
 syn keyword aKeyword or and let in const pub
 syn keyword aKeyword fn struct enum union type
