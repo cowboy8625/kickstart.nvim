@@ -10,18 +10,14 @@ return {
     vim.g.floaterm_autoclose = 1
     vim.g.floaterm_borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' }
 
-    local function getKeys()
-      -- local uname = vim.loop.os_uname().sysname
-      if vim.env.KITTY_WINDOW_ID ~= nil then
-        return '<c-_>'
-      end
-      return '<c-/>'
+    local function keymap(key)
+      vim.keymap.set('n', key, ':FloatermToggle<CR>', { desc = 'Toggle [F]loaterm', silent = true })
+      vim.keymap.set('i', key, '<C-o>:FloatermToggle<CR>', { desc = 'Toggle [F]loaterm', silent = true })
+      vim.keymap.set('t', key, '<c-\\><c-n>:FloatermToggle<CR>', { desc = 'Toggle [F]loaterm', silent = true })
     end
 
-    local keys = getKeys()
-    vim.keymap.set('n', keys, ':FloatermToggle<CR>', { desc = 'Toggle [F]loaterm', silent = true })
-    vim.keymap.set('i', keys, '<C-o>:FloatermToggle<CR>', { desc = 'Toggle [F]loaterm', silent = true })
-    vim.keymap.set('t', keys, '<c-\\><c-n>:FloatermToggle<CR>', { desc = 'Toggle [F]loaterm', silent = true })
+    keymap '<c-/>'
+    keymap '<c-_>'
 
     -- Define a highlight group for Floaterm border
     local color = vim.api.nvim_get_hl_by_name('Normal', true)
