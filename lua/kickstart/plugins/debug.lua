@@ -38,12 +38,14 @@ local function js_debugger_setup()
       },
       -- Debug nodejs processes (make sure to add --inspect when you run the process)
       {
-        type = 'pwa-node',
+        type = 'node2',
         request = 'attach',
         name = 'Attach',
         processId = require('dap.utils').pick_process,
         cwd = vim.fn.getcwd(),
         sourceMaps = true,
+        port = 9229,
+        protocol = 'inspector',
       },
       {
         -- name = 'Run crmSyncTester.ts with tsx',
@@ -315,6 +317,7 @@ return {
     -- end
 
     vim.fn.sign_define('DapBreakpoint', { text = '🔴', texthl = 'DiagnosticSignError', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapStopped', { text = '👉', texthl = 'DiagnosticSignWarn', linehl = 'Visual', numhl = '' })
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
