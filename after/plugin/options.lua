@@ -30,3 +30,8 @@ if uname.sysname == 'Darwin' then
   vim.opt.binary = true
   vim.opt.eol = false
 end
+
+local projectfile = vim.fn.getcwd() .. '/project.godot'
+if projectfile then
+  vim.fn.serverstart './godothost'
+end

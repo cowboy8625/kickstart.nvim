@@ -10,6 +10,20 @@ return {
   { 'cowboy8625/case-swap.nvim' },
   { 'nvim-neotest/nvim-nio' },
   { 'mattn/webapi-vim' },
+  {
+    'azratul/live-share.nvim',
+    dependencies = {
+      'jbyuki/instant.nvim',
+    },
+    config = function()
+      vim.g.instant_username = 'cowboy8625'
+      require('live-share').setup {
+        port_internal = 8765,
+        max_attempts = 40, -- 10 seconds
+        service = 'serveo.net',
+      }
+    end,
+  },
   -- json and yaml formating and more tools
   {
     'gennaro-tedesco/nvim-jqx',

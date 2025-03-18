@@ -569,6 +569,7 @@ require('lazy').setup({
         cpptools = {},
         ts_ls = {},
         elmls = {},
+        cobol_ls = {},
 
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --

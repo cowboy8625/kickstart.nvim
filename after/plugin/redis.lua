@@ -31,6 +31,7 @@ local function get_redis_data(args)
   vim.cmd 'q'
 end
 
+---@return nil
 local function save_to_redis(args)
   if #args.fargs == 0 then
     print 'Please provide a Redis key as an argument.'
