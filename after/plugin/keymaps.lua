@@ -17,7 +17,7 @@ vim.keymap.set('n', '<leader>pe', vim.diagnostic.goto_prev, { desc = 'Go to prev
 --
 -- vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 --
--- vim.keymap.set('n', '<leader>d', ':lua vim.diagnostic.open_float()<CR>')
+vim.keymap.set('n', '<leader>e', ':lua vim.diagnostic.open_float()<CR>')
 
 vim.api.nvim_create_user_command('InsertDate', function()
   local currentDateTime = vim.fn.system 'date'
