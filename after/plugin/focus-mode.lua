@@ -1,7 +1,14 @@
 local function focus_mode_toggle()
+  if vim.g.focus_mode_enabled == nil then
+    vim.g.focus_mode_enabled = false
+  end
+
+  vim.g.focus_mode_enabled = not vim.g.focus_mode_enabled
+
   vim.wo.number = not vim.wo.number
   vim.wo.relativenumber = not vim.wo.relativenumber
   vim.opt.signcolumn = (vim.wo.number and 'yes') or 'no'
+
   -- toggle statusline
   if vim.o.laststatus > 0 then
     vim.o.laststatus = 0
@@ -9,8 +16,12 @@ local function focus_mode_toggle()
     vim.o.laststatus = 3
   end
   vim.o.cmdheight = vim.o.cmdheight == 1 and 0 or 1
+
   -- toggle Codeium
   vim.cmd [[ CodeiumToggle ]]
+
+  -- toggle TS Context
+  vim.cmd [[ TSContextToggle ]]
 
   -- Toggle LSP
   vim.diagnostic.config {

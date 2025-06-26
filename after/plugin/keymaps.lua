@@ -12,6 +12,9 @@ vim.keymap.set('t', '<c-l>', '<c-\\><c-n>:wincmd l<CR>')
 vim.keymap.set('n', '<leader>ne', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>pe', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 
+vim.keymap.set('n', 'j', 'gj')
+vim.keymap.set('n', 'k', 'gk')
+
 -- Spawn terminal at bottom of screen
 -- vim.keymap.set('n', '<leader>;', ':belowright split | term<CR>')
 --
