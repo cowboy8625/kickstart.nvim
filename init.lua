@@ -692,6 +692,7 @@ require('lazy').setup({
         ts_ls = {},
         elmls = {},
         cobol_ls = {},
+        ols = {},
 
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
