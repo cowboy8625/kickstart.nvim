@@ -20,8 +20,8 @@ local function focus_mode_toggle()
   -- toggle Codeium
   vim.cmd [[ CodeiumToggle ]]
 
-  -- toggle TS Context
-  vim.cmd [[ TSContextToggle ]]
+  -- -- toggle TS Context
+  -- vim.cmd [[ TSContext toggle ]]
 
   -- Toggle LSP
   vim.diagnostic.config {

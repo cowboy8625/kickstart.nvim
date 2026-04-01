@@ -15,6 +15,9 @@ vim.keymap.set('n', '<leader>pe', vim.diagnostic.goto_prev, { desc = 'Go to prev
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
 
+vim.keymap.set('n', '<leader>gp', '<cmd>Gitsigns preview_hunk<CR>', { desc = 'Show git hunk' })
+vim.keymap.set('n', '<leader>gB', '<cmd>Gitsigns toggle_current_line_blame<CR>', { desc = 'Show git hunk' })
+
 -- Spawn terminal at bottom of screen
 -- vim.keymap.set('n', '<leader>;', ':belowright split | term<CR>')
 --
